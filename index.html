@@ -1,3 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Connect 4 Multiplayer</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<h1>Connect 4</h1>
+
+<button onclick="connectWallet()">Connect Wallet</button>
+<p id="playerName">Not connected</p>
+
+<br>
+
+<input id="roomInput" placeholder="Room ID">
+<button onclick="createRoom()">Create Room</button>
+<button onclick="joinRoom()">Join Room</button>
+
+<br><br>
+
+<div id="board"></div>
+
 <script src="https://unpkg.com/@unicitylabs/sphere-sdk"></script>
 
 <script src="game.js"></script>
