@@ -29,16 +29,18 @@ import { SphereClient } from "https://cdn.jsdelivr.net/npm/@unicitylabs/sphere-s
 
 const client = new SphereClient();
 
-document.getElementById("connectBtn").onclick = async () => {
+window.client = client;
+
+document.getElementById("connectBtn").addEventListener("click", async () => {
     try {
         const identity = await client.connect();
         document.getElementById("playerName").innerText =
             "Connected: " + identity.nametag;
-    } catch (e) {
-        console.log(e);
+    } catch (err) {
+        console.error(err);
         alert("Wallet connection failed");
     }
-};
+});
 </script>
 
 </body>
