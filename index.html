@@ -25,17 +25,29 @@
 <script src="multiplayer.js"></script>
 
 <script type="module">
-import { connectSphere } from "./sphere-connect.js";
+import { SphereClient } from "https://cdn.jsdelivr.net/npm/@unicitylabs/sphere-sdk/+esm";
 
-document.getElementById("connectBtn").onclick = async () => {
-    const identity = await connectSphere();
-    if(identity){
+let client;
+
+async function initSphere() {
+    client = new SphereClient();
+    console.log("Sphere initialized");
+}
+
+async function connectWallet() {
+    try {
+        const identity = await client.connect();
         document.getElementById("playerName").innerText =
             "Connected: " + identity.nametag;
-    } else {
+    } catch (e) {
+        console.error(e);
         alert("Wallet connection failed");
     }
-};
+}
+
+document.getElementById("connectBtn").addEventListener("click", connectWallet);
+
+initSphere();
 </script>
 
 </body>
