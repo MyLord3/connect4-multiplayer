@@ -21,24 +21,22 @@
 
 <div id="board"></div>
 
+<script src="https://cdn.jsdelivr.net/npm/@unicitylabs/sphere-sdk"></script>
+
 <script src="game.js"></script>
 <script src="multiplayer.js"></script>
 
-<script type="module">
-import { SphereClient } from "https://cdn.jsdelivr.net/npm/@unicitylabs/sphere-sdk/+esm";
-
-let client;
-
-async function initSphere() {
-    client = new SphereClient();
-    console.log("Sphere initialized");
-}
+<script>
+let sphere;
 
 async function connectWallet() {
     try {
-        const identity = await client.connect();
+        sphere = new window.unicity.Sphere();
+        const identity = await sphere.connect();
+
         document.getElementById("playerName").innerText =
             "Connected: " + identity.nametag;
+
     } catch (e) {
         console.error(e);
         alert("Wallet connection failed");
@@ -46,8 +44,6 @@ async function connectWallet() {
 }
 
 document.getElementById("connectBtn").addEventListener("click", connectWallet);
-
-initSphere();
 </script>
 
 </body>
