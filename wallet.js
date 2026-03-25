@@ -1,12 +1,14 @@
-async function connectWallet() {
-    try {
-        const sphere = new Sphere();
-        const user = await sphere.connect();
+import { SphereClient } from "https://cdn.jsdelivr.net/npm/@unicitylabs/sphere-sdk/+esm";
 
+const client = new SphereClient();
+
+document.getElementById("connectBtn").onclick = async () => {
+    try {
+        const identity = await client.connect();
         document.getElementById("playerName").innerText =
-            "Connected: " + user.nametag;
-    } catch (err) {
-        console.log(err);
+            "Connected: " + identity.nametag;
+    } catch (e) {
+        console.log(e);
         alert("Wallet connection failed");
     }
-}
+};
