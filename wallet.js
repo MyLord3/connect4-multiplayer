@@ -1,9 +1,10 @@
 async function connectWallet() {
     try {
-        const wallet = await window.unicity.sphere.connect();
+        const client = await window.Sphere.connect();
         document.getElementById("playerName").innerText =
-            "Connected: " + wallet.nametag;
+            "Connected: " + client.nametag;
     } catch (e) {
+        console.log(e);
         alert("Wallet connection failed");
     }
 }
