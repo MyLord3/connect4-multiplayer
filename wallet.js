@@ -1,10 +1,12 @@
 async function connectWallet() {
     try {
-        const client = await window.Sphere.connect();
+        const sphere = new Sphere();
+        const user = await sphere.connect();
+
         document.getElementById("playerName").innerText =
-            "Connected: " + client.nametag;
-    } catch (e) {
-        console.log(e);
+            "Connected: " + user.nametag;
+    } catch (err) {
+        console.log(err);
         alert("Wallet connection failed");
     }
 }
